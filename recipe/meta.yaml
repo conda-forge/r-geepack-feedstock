@@ -31,9 +31,14 @@ requirements:
     - {{ compiler('m2w64_cxx') }}  # [win]
   host:
     - r-base
-
+    - r-mass
+    - r-broom
+    - r-magrittr
   run:
     - r-base
+    - r-mass
+    - r-broom
+    - r-magrittr
 
 test:
   commands:
@@ -52,8 +57,3 @@ about:
 extra:
   recipe-maintainers:
     - conda-forge/r
-    - dpryan79
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
