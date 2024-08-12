@@ -7,8 +7,8 @@ package:
 
 source:
   url:
-    - https://cran.r-project.org/src/contrib/geepack_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/geepack/geepack_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/geepack_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/geepack/geepack_{{ version }}.tar.gz
   sha256: 29e2f0d314e75de748f33438b5b1282f469d163e29534c61616c257b2955e478
 
 build:
@@ -25,6 +25,11 @@ requirements:
     - {{ stdlib("m2w64_c") }}    # [win]
     - {{ compiler('cxx') }}        # [unix]
     - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
   host:
     - r-base
     - r-mass
@@ -38,7 +43,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('geepack')"  # [not win]
+    - $R -e "library('geepack')"           # [not win]
     - "\"%R%\" -e \"library('geepack')\""  # [win]
 
 about:
